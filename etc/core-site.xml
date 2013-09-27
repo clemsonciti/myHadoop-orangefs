@@ -8,37 +8,48 @@
 <!-- DO NOT EDIT - THESE PROPERTIES ARE SET BY THE CONFIGURE SCRIPTS -->
 <property>
   <name>hadoop.tmp.dir</name>
-  <value>HADOOP_DATA_DIR</value>
+  <value>HADOOP_TMP_DIR</value>
   <description>A base for other temporary directories.</description>
 </property>
+<!-- END OF DO NOT EDIT SECTION -->
 
+<!-- We can refer to localhost below because PVFS2TAB_FILE, 
+     appended to hadoop-env.sh, dictates to the 
+     OrangeFS client which OrangeFS server to contact initially. -->
 <property>
   <name>fs.default.name</name>
-  <value>hdfs://MASTER:54310</value>
+  <value>ofs://localhost</value>
   <description>The name of the default file system.  A URI whose
   scheme and authority determine the FileSystem implementation.  The
   uri's scheme determines the config property (fs.SCHEME.impl) naming
   the FileSystem implementation class.  The uri's authority is used to
   determine the host, port, etc. for a filesystem.</description>
 </property>
-<!-- END OF DO NOT EDIT SECTION -->
+
+<!-- OrangeFS mount path specified in PVFS2TAB_FILE -->
+<property>
+  <name>fs.ofs.mntLocation</name>
+  <value>/mnt/orangefs</value>
+  <description>
+    Location of OrangeFS mount point.
+  </description>
+</property>
+
+<!-- Set OrangeFS as the desired file system to be used by Hadoop. -->
+<property>
+  <name>fs.ofs.impl</name>
+  <value>org.apache.hadoop.fs.ofs.OrangeFileSystem</value>
+  <description>
+    An extension of FileSystem for OrangeFS URIs.
+  </description>
+</property>
 
 <property>
   <name>io.file.buffer.size</name>
-  <value>131072</value>
-  <description>Size of read/write buffer</description>
-</property>
-
-<property>
-  <name>fs.inmemory.size.mb</name>
-  <value>650</value>
-  <description>Larger amount of memory allocated for the in-memory file-system used to merge map-outputs at the reduces. </description>
-</property>
-
-<property>
-  <name>io.sort.mb</name>
-  <value>650</value>
-  <description>Higher memory-limit while sorting data.</description>
+  <value>65536</value>
+  <description>
+    64KB Client I/O Buffer
+  </description>
 </property>
 
 </configuration>

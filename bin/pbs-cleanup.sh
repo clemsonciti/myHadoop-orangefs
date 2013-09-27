@@ -21,12 +21,12 @@ for i
 do
     case "$i" in
         -n) shift;
-	    NODES=$1
+        NODES=$1
             shift;;
 
         -h) shift;
-	    print_usage
-	    exit 0
+        print_usage
+        exit 0
     esac
 done
 
@@ -44,8 +44,8 @@ if [ -e $PBS_NODEFILE ]; then
     echo "Received $pbsNodes nodes from PBS"
 
     if [ "$NODES" != "$pbsNodes" ]; then
-	echo "Number of nodes received from PBS not the same as number of nodes requested by user"
-	exit 1
+    echo "Number of nodes received from PBS not the same as number of nodes requested by user"
+    exit 1
     fi
 else 
     echo "PBS_NODEFILE is unavailable"
@@ -57,7 +57,7 @@ for ((i=1; i<=$NODES; i++))
 do
     node=`awk 'NR=='"$i"'{print;exit}' $PBS_NODEFILE`
     echo "Clean up node: $node"
-    cmd="rm -rf $HADOOP_DATA_DIR $HADOOP_LOG_DIR"
+    cmd="rm -rf $HADOOP_TMP_DIR $HADOOP_LOG_DIR"
     echo $cmd
     ssh $node $cmd 
 done
