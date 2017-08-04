@@ -13,7 +13,7 @@ module add hadoop/1.2.1
 #export JAVA_HOME=/usr/java/jre1.6.0_45
 
 # Set this to the path of your myHadoop-orangefs directory
-export MY_HADOOP_PREFIX="${HOME}/orangefs_hadoop/myHadoop-orangefs"
+export MY_HADOOP_PREFIX="${HOME}/myHadoop-orangefs"
 
 # ***** Set this to the location of the Hadoop installation. *****
 # On Palmetto, this is already done via the above "module add hadoop/x.x.x".
