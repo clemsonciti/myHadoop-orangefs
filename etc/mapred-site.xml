@@ -13,11 +13,59 @@
   and reduce task.
   </description>
 </property>
+
+<property>
+  <name>mapred.system.dir</name>
+  <value>/MAPRED_DFS_DIR/system</value>
+  <description> The directory where MapReduce stores control files. </description>
+</property>
+
+<property>
+  <name>mapreduce.jobtracker.staging.root.dir</name>
+  <value>/MAPRED_DFS_DIR/staging</value>
+  <description> The root of the staging area for users' job files. In practice,
+      this should be the directory where users' home directories are located (usually /user)
+  </description>
+</property>
+
+<property>
+  <name>mapred.temp.dir</name>
+  <value>/MAPRED_DFS_DIR/temp</value>
+  <description> A shared directory for temporary files. </description>
+</property>
+
+<property>
+  <name>mapred.tasktracker.map.tasks.maximum</name>
+  <value>MAX_MAP_TASKS_PER_SLAVE</value>
+  <description>
+    The maximum number of map tasks that will be run simultaneously by a task tracker.
+  </description>
+</property>
+
+<property>
+  <name>mapred.tasktracker.reduce.tasks.maximum</name>
+  <value>MAX_REDUCE_TASKS_PER_SLAVE</value>
+  <description>
+    The maximum number of reduce tasks that will be run simultaneously by a task tracker.
+  </description>
+</property>
 <!-- END OF DO NOT EDIT SECTION -->
+
+<!-- TODO the following should include each /local_scratch disk for best performance
+<property>
+  <name>mapred.local.dir</name>
+  <value>/local_scratch/denton/mapred_local_dir</value>
+  <description> The local directory where MapReduce stores intermediate
+  data files. May be a comma-separated list of directories on
+  different devices in order to spread disk i/o. Directories that do
+  not exist are ignored.
+  </description>
+</property>
+-->
 
 <property>
   <name>mapred.map.tasks.speculative.execution</name>
-  <value>false</value>
+  <value>true</value>
   <description>
     If true, then multiple instances of some map tasks may be executed in
             parallel.
@@ -33,29 +81,9 @@
   </description>
 </property>
 
-<!--
-
 <property>
   <name>mapreduce.jobtracker.split.metainfo.maxsize</name>
   <value>-1</value>
 </property>
-
-<property>
-  <name>mapred.tasktracker.map.tasks.maximum</name>
-  <value>15</value>
-  <description>
-    The maximum number of map tasks that will be run simultaneously by a task tracker.
-  </description>
-</property>
-
-<property>
-  <name>mapred.tasktracker.reduce.tasks.maximum</name>
-  <value>15</value>
-  <description>
-    The maximum number of reduce tasks that will be run simultaneously by a task tracker.
-  </description>
-</property>
-
--->
 
 </configuration>

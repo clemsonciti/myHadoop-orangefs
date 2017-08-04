@@ -10,15 +10,11 @@
   <name>hadoop.tmp.dir</name>
   <value>HADOOP_TMP_DIR</value>
   <description>A base for other temporary directories.</description>
-</property>
-<!-- END OF DO NOT EDIT SECTION -->
+</property>    
 
-<!-- We can refer to localhost below because PVFS2TAB_FILE, 
-     appended to hadoop-env.sh, dictates to the 
-     OrangeFS client which OrangeFS server to contact initially. -->
 <property>
   <name>fs.default.name</name>
-  <value>ofs://localhost</value>
+  <value>MY_HADOOP_ORANGEFS_DEFAULT_SYSTEM</value>
   <description>The name of the default file system.  A URI whose
   scheme and authority determine the FileSystem implementation.  The
   uri's scheme determines the config property (fs.SCHEME.impl) naming
@@ -26,14 +22,24 @@
   determine the host, port, etc. for a filesystem.</description>
 </property>
 
-<!-- OrangeFS mount path specified in PVFS2TAB_FILE -->
 <property>
-  <name>fs.ofs.mntLocation</name>
-  <value>/mnt/orangefs</value>
+  <name>fs.ofs.systems</name>
+  <value>MY_HADOOP_ORANGEFS_SYSTEMS</value>
   <description>
-    Location of OrangeFS mount point.
+    A way to refer to named instances of OrangeFS metadata servers to distinguish between different systems.
+    This is not used to communicated with the server but is a way for the user to distinguish which server they are contacting
+    via HDFS URI scheme and authority.
   </description>
 </property>
+
+<property>
+  <name>fs.ofs.mntLocations</name>
+  <value>MY_HADOOP_ORANGEFS_MOUNT_LOCATIONS</value>
+  <description>
+    Location of OrangeFS mount points. Use comma separated mount points if you have multiple OrangeFS systems.
+  </description>
+</property>
+<!-- END OF DO NOT EDIT SECTION -->
 
 <!-- Set OrangeFS as the desired file system to be used by Hadoop. -->
 <property>
@@ -44,6 +50,7 @@
   </description>
 </property>
 
+<!--
 <property>
   <name>io.file.buffer.size</name>
   <value>65536</value>
@@ -51,5 +58,6 @@
     64KB Client I/O Buffer
   </description>
 </property>
+-->
 
 </configuration>
